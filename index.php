@@ -6,11 +6,11 @@
  * 3. Déployez sur votre serveur et testez !
  */
 
-$from = '';
-$to = '';
-$message = 'Hello World, sending a simple mail !';
+$from = 'Mon super message';
+$to = 'vincent.harpin@gmail.com';
+//$message = 'Hello World, sending a simple mail !';
 // TODO Votre code ici.
-
+//mail($to, $from, $message);
 
 /**
  * 4. Commentez le code précédent, mais gardez les variables $from et $to
@@ -24,3 +24,17 @@ $message = 'Hello World, sending a simple mail !';
  *     N'écrasez pas les valeurs déjà existantes ( s'il y en a ).
  */
 // TODO Votre code ici.
+
+$message = 'Je vais faire les courses au super marché. Je vais préparé à manger ce soir. Je vais jouer aux jeu vidéo pour me détendre. Je vas dormir pendant huite heure pour me reposer. Je vais regarder la télévision.';
+$message = wordwrap($message, 70, "\r\n");
+mail($to, $from, $message);
+if(mail($to, $from, $message) === true) {
+    echo "Le message a bien été envoyé. Merci !";
+} else {
+    echo "Une erreur est survenue lors de l'envoi du mail";
+}
+
+$file = fopen('mails.txt', 'a+b');
+fwrite($file, $to . "\n");
+fwrite($file, $message . "\n");
+fclose($file);
